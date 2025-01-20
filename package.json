@@ -1,0 +1,35 @@
+{
+  "name": "api.nether.host",
+  "version": "1.0.0",
+  "description": "RESTful API for the Nether Host platform",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch-path=./src src/server.js",
+    "build": "pnpm run clean &&node scripts/build.js",
+    "build:prod": "pnpm run clean && NODE_ENV=production node scripts/build.js",
+    "start": "node dist/server.js",
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "hosting",
+    "nether"
+  ],
+  "author": "Nether Host",
+  "license": "NCCL",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "boxen": "5.1.2",
+    "chalk": "4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2",
+    "rimraf": "^6.0.1"
+  }
+}
