@@ -5,11 +5,11 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch-path=./src src/server.js",
-    "build": "pnpm run clean &&node scripts/build.js",
+    "build": "pnpm run clean && node scripts/build.js",
     "build:prod": "pnpm run clean && NODE_ENV=production node scripts/build.js",
     "start": "node dist/server.js",
     "clean": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "node scripts/deploy.js"
   },
   "keywords": [
     "api",
@@ -26,7 +26,9 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
-    "mongoose": "^8.9.5"
+    "ioredis": "^5.4.2",
+    "mongoose": "^8.9.5",
+    "mysql2": "^3.12.0"
   },
   "devDependencies": {
     "esbuild": "^0.24.2",

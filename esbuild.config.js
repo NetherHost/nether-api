@@ -8,14 +8,7 @@ const config = {
   outdir: "dist",
   sourcemap: true,
   minify: true,
-  external: [
-    // External packages that shouldn't be bundled
-    "express",
-    "mongoose",
-    "dotenv",
-    "chalk",
-    "boxen",
-  ],
+  external: ["express", "mongoose", "dotenv", "chalk", "boxen"],
 };
 
 module.exports = config;

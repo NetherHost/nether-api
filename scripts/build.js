@@ -1,6 +1,6 @@
 const esbuild = require("esbuild");
 const config = require("../esbuild.config.js");
-const logger = require("../src/lib/logger");
+const logger = require("../src/utils/logger");
 
 async function build() {
   try {

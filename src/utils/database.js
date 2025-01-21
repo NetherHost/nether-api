@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const logger = require("../lib/logger");
+const logger = require("./logger");
 
 class Database {
   constructor(uri) {
@@ -13,24 +13,22 @@ class Database {
         useNewUrlParser: true,
       });
 
-      logger.success(
-        `Connected to database! (${this.connection.connection.host})`
-      );
-
       this._addEventListeners();
+
+      return this.connection;
     } catch (error) {
-      logger.error(`Database connection failed: (${error.message})`);
+      logger.error(`MongoDB connection failed: (${error.message})`);
       process.exit(1);
     }
   }
 
   _addEventListeners() {
     this.connection.connection.on("error", (error) => {
-      logger.error(`Database error: ${error.message}`);
+      logger.error(`MongoDB error: ${error.message}`);
     });
 
     this.connection.connection.on("disconnected", () => {
-      logger.warn("Database connection lost");
+      logger.warn("MongoDB connection lost");
     });
   }
 
@@ -38,16 +36,15 @@ class Database {
     if (this.connection) {
       try {
         await mongoose.connection.close();
-        logger.info("Database disconnected successfully");
       } catch (error) {
         logger.error(
-          `Error while disconnecting from database: ${error.message}`
+          `Error while disconnecting from MongoDB: ${error.message}`
         );
       }
     } else {
-      logger.warn("No database connection found");
+      logger.warn("No MongoDB connection found");
     }
   }
 }
 
-module.exports = Database;
+module.exports = new Database(process.env.MONGO_URI);
